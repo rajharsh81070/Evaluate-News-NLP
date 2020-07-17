@@ -1,43 +1,86 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>Test</title>
-        <link rel="stylesheet" href="/styles/resets.css">
-        <link rel="stylesheet" href="/styles/base.css">
-        <link rel="stylesheet" href="/styles/header.css">
-        <link rel="stylesheet" href="/styles/form.css">
-        <link rel="stylesheet" href="/styles/footer.css">
-    </head>
 
-    <body>
+<head>
+    <meta charset="utf-8">
+    <title>Evaluate a news article or text with Aylient NLP</title>
+</head>
 
-        <header>
-            <div class="">
-                Logo
-            </div>
-            <div class="">
-                navigation
-            </div>
-        </header>
+<body>
+    <header>
+        <div class="">
+            Udacity
+        </div>
+        <div class="">
+            Project: Evaluate a News Article with NLP
+        </div>
+    </header>
 
-        <main>
+    <main>
+        <h1>About Aylian Text Analysis API</h1>
+
+        <p>
+            The Aylien Text Analysis API provides powerful and flexible AI-driven content analysis solutions that bring
+            the power of NLP to the masses. We help developers, data scientists, and marketers understand
+            human-generated textual content at scale.
+        </p>
+
+        <h2>Try it out! Type in a "URL" to see what the Aylient NLP understands from it.</h2>
+
+
+        <section class="errors">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <div id="error"></div>
+        </section>
+
+
+        <section>
+            <form class="" onsubmit="return Client.handleSubmit(event)">
+                <input id="name" type="url" name="test-url" value=""
+                    placeholder="https://www.news-source/a-news-article...">
+                <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)"
+                    onsubmit="return Client.handleSubmit(event)">
+            </form>
             <section>
-                <form class="" onsubmit="return handleSubmit(event)">
-                    <input id="name" type="text" name="input" value="" onblur="onBlur()" placeholder="Name">
-                    <input type="submit" name="" value="submit" onclick="return handleSubmit(event)" onsubmit="return handleSubmit(event)">
-                </form>
-            <section>
 
-            <section>
-                <strong>Form Results:</strong>
-                <div id="results"></div>
-            </section>
-        </main>
+                <section class="url-results">
+                    <ul>
+                        <li>
+                            <h3>Text Polarity:</h3>
+                            <p id="polarity"></p>
+                            <h4>Confidence: </h4>
+                            <p id="polarity_confidence"></p>
+                        </li>
 
-        <footer>
-            <p>This is a footer</p>
-        </footer>
+                        <li>
+                            <h3>Text Subjectivity:</h3>
+                            <p id="subjectivity"></p>
+                            <h4>Confidence: </h4>
+                            <p id="subjectivity_confidence"></p>
+                        </li>
 
-    </body>
+                        <h3>Text Excerpt:</h3>
+                        <p id="excerpt"></p>
+                    </ul>
+                </section>
+    </main>
+
+    <footer>
+        <p>Aylient Natural Language Processing</p>
+    </footer>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js').then(registration => {
+                    console.log('SW registered successfuly: ', registration);
+                });
+            });
+        } else {
+            console.log("Service Working not supported");
+        }
+    </script>
+
+</body>
+
 </html>
